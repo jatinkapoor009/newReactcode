@@ -9,8 +9,8 @@
       font-family: Arial, Helvetica, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #4facfe, #00f2fe);
-      color: #fff;
+      background: #f5f7fa;
+      color: #333;
       text-align: center;
     }
     header {
@@ -19,6 +19,7 @@
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
+      color: #0077b6;
     }
     p {
       font-size: 1.2em;
@@ -27,20 +28,20 @@
     a.button {
       display: inline-block;
       padding: 12px 25px;
-      background: #fff;
-      color: #4facfe;
+      background: #0077b6;
+      color: #fff;
       text-decoration: none;
       border-radius: 25px;
       font-weight: bold;
       transition: 0.3s;
     }
     a.button:hover {
-      background: #e6e6e6;
+      background: #005f86;
     }
     footer {
       margin-top: 50px;
       font-size: 0.9em;
-      color: #ddd;
+      color: #555;
     }
     /* Documentation Section */
     #docs {
@@ -52,12 +53,12 @@
       margin: 20px auto;
       max-width: 900px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
     #docs h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #4facfe;
+      color: #0077b6;
     }
     ol {
       line-height: 1.8;
@@ -65,7 +66,7 @@
     }
     code {
       display: block;
-      background: #f4f4f4;
+      background: #f1f1f1;
       color: #d6336c;
       padding: 8px;
       margin: 8px 0;
@@ -94,7 +95,10 @@
       <li><b>Step 2:</b> Update packages:
         <code>sudo apt update && sudo apt upgrade -y</code>
       </li>
-      <li><b>Step 3:</b> Install <strong>JRE and JDK</strong> (21 + mini JDK 17 for this project).</li>
+      <li><b>Step 3:</b> Install <strong>JRE and JDK</strong> (21 + mini JDK 17 for this project):
+        <code>sudo apt install openjdk-21-jdk -y</code>
+        <code>sudo apt install openjdk-17-jdk-headless -y</code>
+      </li>
       <li><b>Step 4:</b> Install Jenkins dependencies:
         <code>curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc &gt; /dev/null</code>
         <code>echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &gt; /dev/null</code>
