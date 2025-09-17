@@ -1,156 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Jatin Kapoor — Node.js Project</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jatin Kapoor | Node.js Project</title>
   <style>
-    :root{
-      --bg1: #0f172a;
-      --bg2: #07122e;
-      --accent: #00d4ff;
-      --muted: #9aa4b2;
-      --card: rgba(255,255,255,0.03);
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    *{box-sizing:border-box}
-    body{font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:linear-gradient(135deg,var(--bg1),var(--bg2)); color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-
-    .container{max-width:1100px;margin:6vh auto;padding:36px}
-
-    .card{background:var(--card);border-radius:18px;padding:34px;box-shadow: 0 8px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);}
-
-    .hero{display:flex;gap:28px;align-items:center}
-    .logo{flex:0 0 140px;background:linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,255,175,0.03));border-radius:14px;padding:18px;display:grid;place-items:center}
-    .logo svg{width:88px;height:88px}
-
-    .heading{flex:1}
-    .heading h1{margin:0;font-size:34px;letter-spacing:-0.02em}
-    .heading p.lead{margin:8px 0 16px;color:var(--muted);font-size:15px}
-
-    .badges{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;color:var(--accent);border:1px solid rgba(0,212,255,0.06)}
-
-    .actions{display:flex;gap:12px;margin-top:18px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),#00ffa6);color:#042033;box-shadow:0 6px 18px rgba(0,212,255,0.08)}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent)}
-
-    .split{display:grid;grid-template-columns:1fr 320px;gap:26px;margin-top:26px}
-    .details h3{margin:0 0 6px}
-    .meta{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;color:var(--muted);font-size:14px}
-
-    .code{background:#021025;padding:14px;border-radius:10px;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;color:#9be8ff}
-
-    .preview{margin-top:18px;border-radius:10px;overflow:hidden}
-    .screenshot{width:100%;height:160px;display:block;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,212,255,0.02));display:grid;place-items:center;color:var(--muted)}
-
-    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
-
-    /* responsive */
-    @media (max-width:880px){
-      .split{grid-template-columns:1fr;}
-      .logo{display:none}
-      .container{padding:22px}
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 12px 25px;
+      background: #fff;
+      color: #4facfe;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    a.button:hover {
+      background: #e6e6e6;
+    }
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 0.9em;
+      color: #ddd;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card">
-      <div class="hero">
-        <div class="logo" aria-hidden>
-          <!-- Simple Node.js-ish logo -->
-          <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="128" cy="128" r="120" fill="url(#g)" />
-            <path d="M77 128c0-28 22-50 49-50v20c-17 0-29 12-29 30s12 30 29 30v20c-27 0-49-22-49-50z" fill="#042033" opacity="0.95"/>
-            <path d="M179 128c0 28-22 50-49 50v-20c17 0 29-12 29-30s-12-30-29-30v-20c27 0 49 22 49 50z" fill="#004b46" opacity="0.9"/>
-            <defs>
-              <linearGradient id="g" x1="0" x2="1">
-                <stop offset="0" stop-color="#05293a"/>
-                <stop offset="1" stop-color="#002633"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <div class="heading">
-          <h1>Jatin Kapoor — Node.js Project</h1>
-          <p class="lead">A small, production-ready React + Node deployment example. Build with Vite, deploy to S3. Add this to your resume under <strong>Projects</strong>.</p>
-
-          <div class="badges">
-            <span class="badge">Node.js</span>
-            <span class="badge">Vite</span>
-            <span class="badge">AWS S3 CI/CD</span>
-            <span class="badge">Jenkins Pipeline</span>
-          </div>
-
-          <div class="actions">
-            <button class="btn btn-primary" onclick="openGit()">View on GitHub</button>
-            <button class="btn btn-ghost" onclick="copyCmd()">Copy Run Command</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="split">
-        <div class="details">
-          <h3>About this project</h3>
-          <p class="meta">This repo contains a Vite React frontend and a Node.js backend example. The Jenkins pipeline builds the project and deploys the static `dist/` folder to an S3 bucket. Ideal for showcasing CI/CD and modern frontend toolchain on your resume.</p>
-
-          <div style="margin-top:12px">
-            <h3>Quick commands</h3>
-            <div class="code">
-              <div style="margin-bottom:8px"># install & run (frontend)</div>
-              <code>npm ci &amp;&amp; npm run build &amp;&amp; npm start</code>
-            </div>
-          </div>
-
-          <div style="margin-top:12px">
-            <h3>Pipeline</h3>
-            <div class="meta">Jenkinsfile builds with NodeJS tool, runs `npm run build`, then uses AWS CLI to sync `dist/` to S3. Credentials are provided via Jenkins Credentials Binding.</div>
-          </div>
-
-          <div style="margin-top:12px">
-            <h3>Permissions</h3>
-            <div class="meta">Ensure the IAM user used by Jenkins has S3 put/delete access on the target bucket.</div>
-          </div>
-        </div>
-
-        <aside>
-          <div class="meta">
-            <strong>Project</strong>
-            <div style="margin-top:8px">nodejs-project1</div>
-            <hr style="margin:10px 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
-            <strong>Owner</strong>
-            <div style="margin-top:8px">Jatin Kapoor</div>
-            <hr style="margin:10px 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
-            <strong>Live</strong>
-            <div style="margin-top:8px"><a id="liveLink" href="#" style="color:var(--accent);text-decoration:none">Not deployed</a></div>
-          </div>
-
-          <div class="preview">
-            <div class="screenshot">Preview area — replace with a screenshot of your deployed app</div>
-          </div>
-        </aside>
-      </div>
-
-      <footer>Tip: Use an Elastic IP for your EC2 or a static bucket website URL to keep links stable. Good luck with your resume! 🚀</footer>
-    </div>
-  </div>
-
-  <script>
-    function openGit(){
-      window.open('https://github.com/jatinkapoor009/newReactcode.git','_blank')
-    }
-    function copyCmd(){
-      const txt = 'npm ci && npm run build && npm start'
-      navigator.clipboard.writeText(txt).then(()=>{
-        alert('Copied: ' + txt)
-      }).catch(()=>{alert('Copy failed — select and copy manually.')})
-    }
-  </script>
+  <h1>Node.js Project</h1>
+  <p>Designed and Developed by <strong>Jatin Kapoor</strong></p>
+  <a href="#" class="button">View Project</a>
+  <footer>© 2025 Jatin Kapoor. All rights reserved.</footer>
 </body>
 </html>
