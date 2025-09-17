@@ -12,11 +12,9 @@
       background: linear-gradient(135deg, #4facfe, #00f2fe);
       color: #fff;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    }
+    header {
+      padding: 50px 20px;
     }
     h1 {
       font-size: 3em;
@@ -40,16 +38,92 @@
       background: #e6e6e6;
     }
     footer {
-      position: absolute;
-      bottom: 15px;
+      margin-top: 50px;
       font-size: 0.9em;
       color: #ddd;
     }
+    /* Documentation Section */
+    #docs {
+      display: none;
+      text-align: left;
+      background: #fff;
+      color: #333;
+      padding: 40px;
+      margin: 20px auto;
+      max-width: 900px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    #docs h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #4facfe;
+    }
+    ol {
+      line-height: 1.8;
+      font-size: 1.1em;
+    }
+    code {
+      display: block;
+      background: #f4f4f4;
+      color: #d6336c;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
   </style>
+  <script>
+    function showDocs() {
+      document.getElementById("docs").style.display = "block";
+      window.location.hash = "docs";
+    }
+  </script>
 </head>
 <body>
-  <h1>Node.js Project</h1>
-  <p>Designed and Developed by <strong>Jatin Kapoor</strong></p>
-  <a href="http://nodejs-project1.s3-website-us-east-1.amazonaws.com/" 
-     class="button" target="_blank">View Project</a>
-  <footer>© 2025 Jat
+  <header>
+    <h1>Node.js Project</h1>
+    <p>Designed and Developed by <strong>Jatin Kapoor</strong></p>
+    <a href="javascript:void(0)" onclick="showDocs()" class="button">View Project</a>
+  </header>
+
+  <section id="docs">
+    <h2>🚀 Project Deployment Documentation</h2>
+    <ol>
+      <li><b>Step 1:</b> Create an <strong>EC2 instance</strong> (t3.medium) and connect using <strong>SSH</strong>.</li>
+      <li><b>Step 2:</b> Update packages:
+        <code>sudo apt update && sudo apt upgrade -y</code>
+      </li>
+      <li><b>Step 3:</b> Install <strong>JRE and JDK</strong> (21 + mini JDK 17 for this project).</li>
+      <li><b>Step 4:</b> Install Jenkins dependencies:
+        <code>curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc &gt; /dev/null</code>
+        <code>echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list &gt; /dev/null</code>
+      </li>
+      <li><b>Step 5:</b> Allow <strong>port 8080</strong> in EC2 Security Group and install Jenkins.</li>
+      <li><b>Step 6:</b> Update Jenkins default plugins.</li>
+      <li><b>Step 7:</b> Create a <strong>pipeline</strong> and install <strong>Node.js plugin</strong>.</li>
+      <li><b>Step 8:</b> Configure Node.js in <strong>Global Tools</strong> → NodeJS 22.4.1.</li>
+      <li><b>Step 9:</b> Use Declarative Pipeline script:
+        <code>
+pipeline {<br>
+&nbsp;&nbsp;agent any<br>
+&nbsp;&nbsp;tools { nodejs 'NodeJS 22.4.1' }<br>
+&nbsp;&nbsp;stages {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stage('Git Checkout') { steps { git url: 'https://github.com/jatinkapoor009/newReactcode.git', branch: 'main' } }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stage('NPM Install') { steps { sh 'npm install' } }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stage('Node Build') { steps { sh 'npm run build' } }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;stage('S3 Deploy') { steps { withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) { sh 'aws s3 sync dist/ s3://nodejs-project1 --delete' } } }<br>
+&nbsp;&nbsp;}<br>
+}
+        </code>
+      </li>
+      <li><b>Step 10:</b> Create an <strong>IAM Role</strong> with S3 full access and attach to EC2.</li>
+      <li><b>Step 11:</b> Create an <strong>S3 Bucket</strong> for deployment.</li>
+      <li><b>Step 12:</b> Setup <strong>AWS CLI</strong> and provide credentials (Access Key + Secret Key) in Jenkins.</li>
+      <li><b>Note:</b> If AWS CLI is not configured properly, re-run <code>aws configure</code> and check permissions.</li>
+    </ol>
+  </section>
+
+  <footer>© 2025 Jatin Kapoor. All rights reserved.</footer>
+</body>
+</html>
